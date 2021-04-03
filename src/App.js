@@ -1,33 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Socket from "./socket";
 import SocketService from "./socket";
 
 function App() {
-  const [lastSubmitText, setLastSubmitText] = useState("");
-
   const [entries, setEntries] = useState({
     entries: [
       {
         id: "0",
-        text: "This was the beginning of something great",
+        text: "Start typing here",
         author: "Amy",
-      },
-      {
-        id: "1",
-        text: "It started small",
-        author: "Bob",
-      },
-      {
-        id: "2",
-        text: "But itsy-little bits were added often",
-        author: "Amy",
-      },
-      {
-        id: "3",
-        text: "And it soon became a thing to cherish.",
-        author: "Charles",
       },
     ],
   });
@@ -40,23 +21,6 @@ function App() {
     SocketService.registerCallback("entry-update", updateEntriesFromServer);
     return onDestroy;
   }, []);
-
-  const setCaretPosition = (el, pos) => {
-    const range = document.createRange();
-    var sel = window.getSelection();
-    range.setStart(el.childNodes[0], pos);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
-  };
-
-  const handleChange = (e) => {
-    const currentText = e.currentTarget.innerHTML ?? "";
-    if (currentText.length < lastSubmitText.length) {
-      e.currentTarget.innerHTML = lastSubmitText;
-      setCaretPosition(e.currentTarget, lastSubmitText.length);
-    }
-  };
 
   const getExistingEntries = () => {
     const existingEntries = entries.entries.map((entry) => {
@@ -92,8 +56,6 @@ function App() {
   };
 
   const updateEntriesFromServer = (serverEntries) => {
-    console.log("Updating entries from server");
-    console.log(serverEntries);
     setEntries({ entries: serverEntries });
   };
 
@@ -104,7 +66,6 @@ function App() {
         className="mainTextInput"
         contentEditable="true"
         onBlur={(e) => submitEntry(e)}
-        // onInput={(e) => handleChange(e)}
       ></div>
     </div>
   );
