@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.mainText {
+  height: 70vh;
+  width: 80vw;
+  margin-left: 10vw;
+  margin-top: 10vh;
+  padding: 3vh 3vw;
+  overflow: scroll;
+  font-size: 21px;
+  font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+}
+
+.existingEntries {
+  /* padding: 0, 21px, 10px, 0; */
+  margin-right: 7px;
+  width: 70vw;
+  padding: 5px;
+  /* margin-bottom: 10px; */
+}
+
+.mainTextInput {
+  /* float: left; */
+  margin-top: 10px;
+  min-width: 20px;
+  width: 70vw;
+  height: 30vh;
+}
